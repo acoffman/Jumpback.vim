@@ -29,7 +29,7 @@ endfunction
 
 function! Startup()
   :ruby startup
-endfunctio
+endfunction
 
 augroup autojumper
   autocmd TabEnter * :call TabChanged()
