@@ -27,8 +27,13 @@ function! Jump()
   :ruby jump_tab
 endfunction
 
+function! Startup()
+  :ruby startup
+endfunction
+
 augroup autojumper
   autocmd TabEnter * :call TabChanged()
+  autocm GUIEnter * :call Startup()
 augroup END
 
 command Jumpback :call Jump()
@@ -44,6 +49,10 @@ def jump_tab
  if @previous
    VIM::command("tabn #{@previous}")
  end
+end
+
+def startup
+  @current = VIM::evaluate("tabpagenr()")
 end
 
 EOF
