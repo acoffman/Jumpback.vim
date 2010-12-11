@@ -21,7 +21,7 @@ Usage
 ------------
 
 This will add a new command :Jumpback which will switch back to the tab you were most recently working in. 
-You can bind it to the key of your choice with `nnoremap <leader>j :Jumpback <CR>`
+You can bind it to any key you'd like.
 
 Author
 -------
