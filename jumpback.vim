@@ -19,8 +19,32 @@ endif
 
 let g:loaded_jumpback = "true"
 
-function! s:LoadFile()
-  :rubyfile jumpback.rb
+function! TabChanged()
+  :ruby tab_changed
 endfunction
 
+function! Jump()
+  :ruby jump_tab
+endfunction
+
+augroup autojumper
+  autocmd TabEnter * :call TabChanged()
+augroup END
+
+command Jumpback :call Jump()
+
+ruby << EOF
+
+def tab_changed
+  @previous = @current if @current
+  @current =  VIM::evaluate("tabpagenr()")
+end
+
+def jump_tab
+ if @previous
+   VIM::command("tabn #{@previous}")
+ end
+end
+
+EOF
 
